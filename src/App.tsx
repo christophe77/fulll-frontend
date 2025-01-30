@@ -2,18 +2,17 @@ import Header from './components/Header/Header';
 import SearchInput from './components/SearchInput/SearchInput';
 import ActionBar from './components/ActionBar/ActionBar';
 import SearchResponseContainer from './components/SearchResponseContainer/SearchResponseContainer';
-
-import './App.css';
+import MyAppProvider from './providers';
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <SearchInput />
-      <ActionBar />
-      <SearchResponseContainer />
-    </div>
-  );
+	return (
+		<MyAppProvider>
+			<Header />
+			<SearchInput />
+			<ActionBar />
+			<SearchResponseContainer />
+		</MyAppProvider>
+	);
 }
 
 export default App;
