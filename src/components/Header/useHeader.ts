@@ -1,3 +1,3 @@
-export default function useSearchHeader() {
+export default function useHeader() {
 	return {};
 }
