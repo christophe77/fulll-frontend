@@ -1,6 +1,6 @@
-import useSearchHeader from './useHeader';
+// import useHeader from './useHeader';
 import styles from './Header.module.css';
 
-export default function Header(){
-    return <></>
+export default function Header() {
+	return <div className={styles.container}>Github Search</div>;
 }
