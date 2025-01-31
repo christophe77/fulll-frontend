@@ -7,7 +7,7 @@ html {
 }
 body {
 	margin: 0;
-	font-family: sans-serif;
+	font-family: 'Aestetico', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -17,23 +17,22 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Aestetico';
 	color: black;
 }
 h1 {
-	font-size: 28px;
+	font-family: 'Aestetico Informal';
 }
 h2 {
-	font-size: 26px;
-}
-code {
-	font-family: sans-serif;
+	font-family: 'Aestetico';
+	font-weight: 500;
+	font-size: 30px;
 }
 
 [class^='icon-'],
 [class*=' icon-'] {
 	display: inline-block;
 	vertical-align: middle;
+	padding: 5px;
 }
 
 @font-face {

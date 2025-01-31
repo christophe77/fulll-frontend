@@ -1,23 +1,29 @@
-// import useActionBar from './useActionBar';
+import useActionBar from './useActionBar';
 import Icon from '../ui/Icon/Icon';
 import styles from './ActionBar.module.css';
 
 export default function ActionBar() {
+	const { handleDeployClick, handleCopyClick, handleDeleteClick } = useActionBar();
 	return (
 		<div className={styles.container}>
-			<span>[] 3 elements selected</span>
-			<Icon
-				name={'copy'}
-				onClick={() => console.log('Copy')}
-				size="20px"
-				color={'#7f8082'}
-			/>
-			<Icon
-				name={'trash'}
-				onClick={() => console.log('Delete')}
-				size="20px"
-				color={'#7f8082'}
-			/>
+			<div className={styles.left}>
+				<Icon
+					name={'dash-square'}
+					onClick={handleDeployClick}
+				/>&nbsp;
+				<span>3 elements selected</span>
+			</div>
+			<div className={styles.right}>
+				<Icon
+					name={'copy'}
+					onClick={handleCopyClick}
+				/>
+				<Icon
+					name={'trash'}
+					onClick={handleDeleteClick}
+				/>
+			</div>
+			<div className={styles.clear}></div>
 		</div>
 	);
 }

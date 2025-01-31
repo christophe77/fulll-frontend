@@ -1,10 +1,17 @@
 .container {
 	height: 64px;
-	margin-bottom: 25px;
-	font-size: 18px;
-	line-height: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: black;
+	margin-top: 25px;
+	color: white;
+	font-weight: 300;
+}
+.left {
+	float: left;
+	padding-left: 10px;
+}
+.right {
+	float: right;
+	padding-right: 10px;
+}
+.clear {
+	clear: both;
 }
