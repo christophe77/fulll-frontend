@@ -9,7 +9,11 @@ export async function fetchGithubUsers(
 	username: string,
 ): Promise<GithubSearchUsersResponse> {
 	// documentation : https://docs.github.com/fr/rest/search/search?apiVersion=2022-11-28#search-users
-	const response = await fetch(`${baseUrl}/search/users?q=${username}`, {
+	// limitations : https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28
+	
+	const query = `${username} in:name type:user`;
+	const encodedQuery = encodeURIComponent(query);
+	const response = await fetch(`${baseUrl}/search/users?q=${encodedQuery}`, {
 		method: 'GET',
 		headers,
 	});

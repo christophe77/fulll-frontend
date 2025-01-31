@@ -1,6 +1,15 @@
-// import useHeader from './useHeader';
+import Icon from '../ui/Icon/Icon';
 import styles from './Header.module.css';
 
 export default function Header() {
-	return <div className={styles.container}>Github Search</div>;
+	return (
+		<div className={styles.container}>
+			<Icon
+				name={'github'}
+				size="35px"
+				color={'black'}
+			/>
+			<h1>Github users search</h1>
+		</div>
+	);
 }

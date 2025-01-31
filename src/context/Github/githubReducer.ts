@@ -5,12 +5,14 @@ export type GithubState = {
 	users: GithubUser[];
 	totalCount: number;
 	incompleteResults: boolean;
+	isLoading: boolean;
 };
 
 export const initialState: GithubState = {
 	users: [],
 	totalCount: 0,
 	incompleteResults: false,
+	isLoading: false,
 };
 
 export default function githubReducer(state: GithubState, action: Actions) {
@@ -20,7 +22,8 @@ export default function githubReducer(state: GithubState, action: Actions) {
 				...state,
 				users: action.payload.items,
 				totalCount: action.payload.total_count,
-				incompleteResults : action.payload.incomplete_results
+				incompleteResults: action.payload.incomplete_results,
+				isLoading: false,
 			};
 		default:
 			return state;

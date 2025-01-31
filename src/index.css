@@ -1,10 +1,31 @@
+:root {
+	--purple: #93f;
+}
+html {
+	background: black;
+	color: white;
+}
 body {
 	margin: 0;
 	font-family: sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Aestetico';
+	color: black;
+}
+h1 {
+	font-size: 28px;
+}
+h2 {
+	font-size: 26px;
+}
 code {
 	font-family: sans-serif;
 }
@@ -13,4 +34,31 @@ code {
 [class*=' icon-'] {
 	display: inline-block;
 	vertical-align: middle;
+}
+
+@font-face {
+	font-family: 'Aestetico Informal';
+	src: url('https://cdn.prod.website-files.com/660c27bf2691b573f997545e/660d191701d841cc8d72a29e_aestetico-informal-bold.otf')
+		format('opentype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Aestetico';
+	src: url('https://cdn.prod.website-files.com/660c27bf2691b573f997545e/660d1917f7cf9f78bf422cc5_aestetico-light.otf')
+		format('opentype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Aestetico';
+	src: url('https://cdn.prod.website-files.com/660c27bf2691b573f997545e/660d19183c9c61d241e736f3_aestetico-medium.otf')
+		format('opentype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
 }
