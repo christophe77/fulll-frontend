@@ -1,7 +1,7 @@
 .container {
 	height: 64px;
 	margin-bottom: 25px;
-	background-color: #929292;
+	background-color: white;
 	font-weight: bold;
 	font-size: 25px;
 	line-height: 1;
@@ -9,4 +9,10 @@
 	align-items: center;
 	justify-content: center;
 	color: black;
+}
+.title {
+	background-color: white;
+}
+.cardList {
+	background-color: black;
 }

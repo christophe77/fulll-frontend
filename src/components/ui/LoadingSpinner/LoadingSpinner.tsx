@@ -1,5 +1,12 @@
 import styles from './LoadingSpinner.module.css';
 
-export default function LoadingSpinner() {
-	return <div className={styles.container}>Loading</div>;
+interface ILoadingSpinnerProps {
+	size?: number | string;
+}
+export default function LoadingSpinner({
+	size = '48px',
+}: ILoadingSpinnerProps) {
+	return (
+		<span className={styles.loader} style={{ width: size, height: size }} />
+	);
 }
