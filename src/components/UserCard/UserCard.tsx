@@ -3,19 +3,17 @@ import { GithubUser } from '../../types/github';
 import Avatar from '../ui/Avatar/Avatar';
 import Button from '../ui/Button/Button';
 import Checkbox from '../ui/Checkbox/Checkbox';
+import { classNames as cn } from '../../utils/classNames';
 import styles from './UserCard.module.css';
 
 interface IUserCardProps {
 	user: GithubUser;
 }
 export default function UserCard({ user }: IUserCardProps) {
-	const {
-		handleViewProfileClick,
-		userNameToDisplay,
-		handleUserCardCheckboxClick,
-	} = useUserCard();
+	const { handleViewProfileClick, shortenString, handleUserCardCheckboxClick } =
+		useUserCard();
 	return (
-		<div className={styles.card}>
+		<div className={cn(styles.card, user.selected && styles.selected)}>
 			<div className={styles.avatarContainer}>
 				<div className={styles.checkbox}>
 					<Checkbox
@@ -27,8 +25,8 @@ export default function UserCard({ user }: IUserCardProps) {
 				<Avatar img={user.avatar_url} />
 
 				<div className={styles.userInfos}>
-					<div>{user.id}</div>
-					<div>{userNameToDisplay(user.login)}</div>
+					<div>{shortenString(String(user.id))}</div>
+					<div>{shortenString(user.login)}</div>
 				</div>
 
 				<Button

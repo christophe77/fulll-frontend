@@ -11,7 +11,7 @@ export type GithubState = {
 
 export const initialState: GithubState = {
 	users: [],
-	totalCount: 0,
+	totalCount: -1,
 	selectedCount: 0,
 	incompleteResults: false,
 	isLoading: false,
@@ -29,22 +29,24 @@ export default function githubReducer(state: GithubState, action: Actions) {
 				isLoading: false,
 			};
 		case ActionTypes.UPDATE_GITHUB_USER_SELECTION:
-			const userToUpdateIndex = state.users.findIndex(
-				(user) => user.id === action.payload.userId,
-			);
-			const newUserArray = [...state.users];
-			newUserArray[userToUpdateIndex].selected = action.payload.selected;
 			return {
 				...state,
-				users: newUserArray,
+				users: action.payload.users,
+				selectedCount: action.payload.selectedCount,
 			};
-		case ActionTypes.DELETE_GITHUB_USER:
+		case ActionTypes.DELETE_GITHUB_USERS:
 			return {
 				...state,
+				users: action.payload.users,
+				totalCount: action.payload.totalCount,
+				selectedCount : 0
 			};
-		case ActionTypes.DUPLICATE_GITHUB_USER:
+		case ActionTypes.DUPLICATE_GITHUB_USERS:
 			return {
 				...state,
+				users: action.payload.users,
+				totalCount: action.payload.totalCount,
+				selectedCount : 0
 			};
 		default:
 			return state;

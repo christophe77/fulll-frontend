@@ -36,6 +36,7 @@ h2 {
 	display: inline-block;
 	vertical-align: middle;
 	padding: 5px;
+	cursor: pointer;
 }
 
 @font-face {
