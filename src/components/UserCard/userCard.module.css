@@ -1,0 +1,31 @@
+.card {
+	width: 100px;
+	height: 135px;
+	text-align: center;
+	border: 1px solid var(--purple);
+	border-radius: 5px;
+	background: white;
+	box-shadow: 4px 6px 6px grey;
+	color: black;
+}
+.avatarContainer {
+	position: relative;
+	padding-top: 15px;
+	text-align: center;
+}
+.checkbox {
+	position: absolute;
+	top: -5px;
+	left: 0;
+}
+.buttonViewProfile {
+	border-color: white;
+	height: 28px;
+	color: white;
+	background: var(--purple);
+}
+.userInfos {
+	font-size: 14px;
+	font-weight: 300;
+	padding-top: 5px;
+}
