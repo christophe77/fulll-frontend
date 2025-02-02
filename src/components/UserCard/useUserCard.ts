@@ -10,28 +10,34 @@ export default function useUserCard() {
 		window.open(url, '_blank');
 	}
 
-	function userNameToDisplay(userLogin: string): string {
+	function shortenString(stringToShorten: string): string {
 		const maxLength = 10;
-		return userLogin.length > maxLength
-			? `${userLogin.slice(0, maxLength - 1)}[...]`
-			: userLogin;
+		return stringToShorten.length > maxLength
+			? `${stringToShorten.slice(0, maxLength - 1)}[...]`
+			: stringToShorten;
 	}
 
 	function handleUserCardCheckboxClick(user: GithubUser): void {
-		const userIsSelected = user.selected || false;
-		console.log(userIsSelected)
-		context?.dispatch({
-			type: ActionTypes.UPDATE_GITHUB_USER_SELECTION,
-			payload: {
-				userId: user.id,
-				selected: !user.selected,
-			},
-		});
+		if (context?.state.users) {
+			const usersCopy = [...context.state.users];
+			const userToUpdateIndex = usersCopy.findIndex(
+				(githubUser) => githubUser.id === user.id,
+			);
+			const newSelectedState = !user.selected;
+			usersCopy[userToUpdateIndex].selected = !user.selected;
+			const newSelectedCount = newSelectedState
+				? context.state.selectedCount + 1
+				: context.state.selectedCount - 1;
+			context?.dispatch({
+				type: ActionTypes.UPDATE_GITHUB_USER_SELECTION,
+				payload: { users: usersCopy, selectedCount: newSelectedCount },
+			});
+		}
 	}
 
 	return {
 		handleViewProfileClick,
-		userNameToDisplay,
+		shortenString,
 		handleUserCardCheckboxClick,
 	};
 }
