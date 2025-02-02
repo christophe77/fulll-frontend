@@ -29,7 +29,7 @@ export default function useUserCard() {
 				? context.state.selectedCount + 1
 				: context.state.selectedCount - 1;
 			context?.dispatch({
-				type: ActionTypes.UPDATE_GITHUB_USER_SELECTION,
+				type: ActionTypes.UPDATE_GITHUB_USER_SELECTED,
 				payload: { users: usersCopy, selectedCount: newSelectedCount },
 			});
 		}

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { GithubContext } from '../../context/Github/GithubContext';
 import { ActionTypes } from '../../context/Github/githubActions';
 import { GithubUser } from '../../types/github';
@@ -8,10 +8,28 @@ export default function useActionBar() {
 	const selectedCount = context?.state.selectedCount || 0;
 	const userCount = context?.state.totalCount || 0;
 
-	function handleDeployClick() {
-		console.log('deploy');
+	const [allIsSelected, setAllIsSelected] = useState<boolean>(false);
+
+	function handleSelectAllClick(): void {
+		if (context?.state.users) {
+			const newUsers: GithubUser[] = [];
+			context.state.users.forEach((user) => {
+				if (allIsSelected) {
+					newUsers.push({ ...user, selected: false });
+				} else {
+					newUsers.push({ ...user, selected: true });
+				}
+			});
+			const selectedCount = newUsers.filter(user => user.selected === true).length
+			context?.dispatch({
+				type: ActionTypes.SELECT_ALL_GITHUB_USERS,
+				payload: { users: newUsers, selectedCount },
+			});
+			setAllIsSelected(!allIsSelected);
+		}
 	}
-	function handleDuplicateClick() {
+
+	function handleDuplicateClick(): void {
 		if (context?.state.users) {
 			const newUsers: GithubUser[] = [];
 			context.state.users.forEach((user) => {
@@ -35,7 +53,7 @@ export default function useActionBar() {
 			});
 		}
 	}
-	function handleDeleteClick() {
+	function handleDeleteClick(): void {
 		if (context?.state.users) {
 			const newUsers: GithubUser[] = [];
 			context.state.users.forEach((user) => {
@@ -44,16 +62,17 @@ export default function useActionBar() {
 				}
 			});
 			context?.dispatch({
-				type: ActionTypes.DUPLICATE_GITHUB_USERS,
+				type: ActionTypes.DELETE_GITHUB_USERS,
 				payload: { users: newUsers, totalCount: newUsers.length },
 			});
 		}
 	}
 	return {
-		handleDeployClick,
+		handleSelectAllClick,
 		handleDuplicateClick,
 		handleDeleteClick,
 		selectedCount,
 		userCount,
+		allIsSelected,
 	};
 }

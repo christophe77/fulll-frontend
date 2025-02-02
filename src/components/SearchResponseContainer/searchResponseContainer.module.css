@@ -1,14 +1,18 @@
 .container {
+	position: relative;
 	font-size: 25px;
 	border: 1px solid var(--purple);
 	border-radius: 5px;
 	margin: 12px;
 }
 .cardList {
+	max-height: 600px;
+	overflow-y: scroll;
 	background-color: black;
 	margin: 0 auto;
 	display: grid;
 	gap: 1rem;
+	margin: 8px;
 }
 .cardItem {
 	color: white;
