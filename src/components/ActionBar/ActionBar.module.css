@@ -1,8 +1,10 @@
 .container {
-	height: 64px;
-	margin-top: 25px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	color: white;
+	font-size: 20px;
 	font-weight: 300;
+	border-bottom: 1px solid var(--purple);
 }
 .left {
 	float: left;

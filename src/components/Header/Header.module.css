@@ -1,6 +1,5 @@
 .container {
 	height: 64px;
-	background-color: white;
 	display: flex;
 	gap: 10px;
 	align-items: center;

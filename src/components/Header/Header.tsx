@@ -7,7 +7,7 @@ export default function Header() {
 			<Icon
 				name={'github'}
 				size="35px"
-				color={'black'}
+				color={'white'}
 			/>
 			<h1>Github users search</h1>
 		</div>
