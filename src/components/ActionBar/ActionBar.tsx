@@ -1,14 +1,16 @@
 import useActionBar from './useActionBar';
 import Icon from '../ui/Icon/Icon';
+import Checkbox from '../ui/Checkbox/Checkbox';
 import styles from './ActionBar.module.css';
 
 export default function ActionBar() {
 	const {
-		handleDeployClick,
+		handleSelectAllClick,
 		handleDuplicateClick,
 		handleDeleteClick,
 		selectedCount,
 		userCount,
+		allIsSelected,
 	} = useActionBar();
 	return (
 		<div className={styles.container}>
@@ -16,11 +18,11 @@ export default function ActionBar() {
 			{userCount === 0 && <p>No result</p>}
 			{userCount > 0 && (
 				<>
-					<div className={styles.left}>
-						<Icon name={'dash-square'} onClick={handleDeployClick} />
-						&nbsp;
-						<span>{selectedCount} elements selected</span>
-					</div>
+					<span className={styles.left}>
+						<Checkbox checked={allIsSelected} onClick={handleSelectAllClick} />
+						{`${selectedCount} elements selected`}
+					</span>
+
 					<div className={styles.right}>
 						<Icon name={'copy'} onClick={handleDuplicateClick} />
 						<Icon name={'trash'} onClick={handleDeleteClick} />

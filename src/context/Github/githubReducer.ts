@@ -28,7 +28,13 @@ export default function githubReducer(state: GithubState, action: Actions) {
 				incompleteResults: action.payload.incomplete_results,
 				isLoading: false,
 			};
-		case ActionTypes.UPDATE_GITHUB_USER_SELECTION:
+		case ActionTypes.UPDATE_GITHUB_USER_SELECTED:
+			return {
+				...state,
+				users: action.payload.users,
+				selectedCount: action.payload.selectedCount,
+			};
+		case ActionTypes.SELECT_ALL_GITHUB_USERS:
 			return {
 				...state,
 				users: action.payload.users,
@@ -39,14 +45,14 @@ export default function githubReducer(state: GithubState, action: Actions) {
 				...state,
 				users: action.payload.users,
 				totalCount: action.payload.totalCount,
-				selectedCount : 0
+				selectedCount: 0,
 			};
 		case ActionTypes.DUPLICATE_GITHUB_USERS:
 			return {
 				...state,
 				users: action.payload.users,
 				totalCount: action.payload.totalCount,
-				selectedCount : 0
+				selectedCount: 0,
 			};
 		default:
 			return state;

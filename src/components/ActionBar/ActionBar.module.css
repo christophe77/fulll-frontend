@@ -1,17 +1,20 @@
 .container {
 	padding: 10px;
 	color: white;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 300;
 	border-bottom: 1px solid var(--purple);
 }
 .left {
 	float: left;
 	padding-left: 10px;
+	display: flex;
+	line-height: 2;
 }
 .right {
 	float: right;
 	padding-right: 10px;
+	line-height: 2;
 }
 .clear {
 	clear: both;
