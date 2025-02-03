@@ -9,12 +9,11 @@
 	float: left;
 	padding-left: 10px;
 	display: flex;
-	line-height: 2;
+	align-items: center;
 }
 .right {
 	float: right;
 	padding-right: 10px;
-	line-height: 2;
 }
 .clear {
 	clear: both;
