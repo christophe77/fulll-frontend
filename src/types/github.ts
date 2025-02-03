@@ -18,7 +18,7 @@ export type GithubUser = {
 	starred_url: string;
 	events_url: string;
 	site_admin: true;
-	selected? : boolean;
+	selected?: boolean;
 };
 
 export type GithubSearchUsersResponse = {
@@ -26,4 +26,5 @@ export type GithubSearchUsersResponse = {
 	selected_count: number;
 	incomplete_results: boolean;
 	items: GithubUser[];
+	error?: string;
 };

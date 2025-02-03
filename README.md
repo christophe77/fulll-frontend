@@ -54,3 +54,9 @@ Add an edit mode
 - Types
 - Responsive
 - Tests
+
+### With more free time I would add
+
+- Tests
+- A Tooltip component to show text on hover icons
+- Detect scroll ends inside the response container and automatically make api call if more pages are available
