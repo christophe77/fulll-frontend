@@ -8,13 +8,15 @@ export default function SearchResponseContainer() {
 	return (
 		<div className={styles.container}>
 			<ActionBar />
-			<div className={styles.cardList}>
-				{githubUsers?.map((user) => (
-					<div key={user.id} className={styles.cardItem}>
-						<UserCard user={user} />
-					</div>
-				))}
-			</div>
+			{githubUsers && githubUsers.length > 0 && (
+				<div className={styles.cardList}>
+					{githubUsers.map((user) => (
+						<div key={user.id} className={styles.cardItem}>
+							<UserCard user={user} />
+						</div>
+					))}
+				</div>
+			)}
 		</div>
 	);
 }
