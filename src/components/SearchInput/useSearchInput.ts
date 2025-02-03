@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeEvent, useContext, useState, useEffect } from 'react';
 import { fetchGithubUsers } from '../../api/github/index';
 import { GithubContext } from '../../context/Github/GithubContext';
@@ -8,7 +9,8 @@ export default function useSearchInput() {
 	const [searchInput, setSearchInput] = useState<string>('');
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string>('');
-	const apiRequestCount: string = 'apiRequestCount';
+
+	const apiRequestCountKey: string = 'apiRequestCount';
 	const maxApiRatePerHour: number = 60;
 	const hasError = error.length > 0;
 
@@ -18,11 +20,11 @@ export default function useSearchInput() {
 			count: 0,
 			expiry: now.getTime() + 60 * 60 * 1000,
 		};
-		localStorage.setItem(apiRequestCount, JSON.stringify(item));
+		localStorage.setItem(apiRequestCountKey, JSON.stringify(item));
 	}
 
 	function populateLocalStorage() {
-		const apiRequestCountExists = localStorage.getItem(apiRequestCount);
+		const apiRequestCountExists = localStorage.getItem(apiRequestCountKey);
 		if (!apiRequestCountExists) {
 			setInitialLocalStorageValues();
 		}
@@ -35,40 +37,40 @@ export default function useSearchInput() {
 	async function searchUsers(username: string) {
 		try {
 			setIsLoading(true);
-			const currentRequestState = localStorage.getItem(apiRequestCount);
+			const currentRequestState = localStorage.getItem(apiRequestCountKey);
 
 			if (currentRequestState) {
 				const { count, expiry } = JSON.parse(currentRequestState);
 				const now = new Date();
-				// Less than 60mn and 60 calls = fetch users
+				// Less than 60mn and less than 60 calls = fetch users
 				if (now.getTime() <= expiry && count < maxApiRatePerHour) {
 					setIsLoading(true);
 					const searchResponse = await fetchGithubUsers(username);
-					setError(searchResponse.error || "");
+					setError(searchResponse.error || '');
 					context?.dispatch({
 						type: ActionTypes.SET_GITHUB_USERS,
 						payload: searchResponse,
 					});
 				}
 				// Less than 60mn and more than 60 calls = show error message
-				if (now.getTime() <= expiry && count === maxApiRatePerHour) {
+				else if (now.getTime() <= expiry && count === maxApiRatePerHour) {
 					const remainingMinutes = Math.abs(now.getTime() - expiry);
 					setError(
 						`Github API call rate reached. Try again in ${remainingMinutes}`,
 					);
 				}
 				// More than 60mn = fetch users
-				if (now.getTime() <= expiry) {
+				else if (now.getTime() > expiry) {
 					setIsLoading(true);
 					const searchResponse = await fetchGithubUsers(username);
-					setError(searchResponse.error || "");
+					setError(searchResponse.error || '');
 					context?.dispatch({
 						type: ActionTypes.SET_GITHUB_USERS,
 						payload: searchResponse,
 					});
 				}
-				if (now.getTime() > expiry) {
-					localStorage.removeItem(apiRequestCount);
+				else if (now.getTime() > expiry) {
+					localStorage.removeItem(apiRequestCountKey);
 					populateLocalStorage();
 				}
 
@@ -81,7 +83,7 @@ export default function useSearchInput() {
 	}
 
 	useEffect(() => {
-		if (searchInput) {
+		if (searchInput.length > 0) {
 			const delayInputTimeoutId = setTimeout(() => {
 				searchUsers(searchInput);
 			}, 500);
